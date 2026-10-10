@@ -1,0 +1,24 @@
+{
+  "name": "Deadly Dinosaurs",
+  "short_name": "Deadly Dinos",
+  "description": "A fun, educational app about dinosaurs and prehistoric animals for kids.",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#F5E6C4",
+  "theme_color": "#24401C",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

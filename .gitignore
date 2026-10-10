@@ -1,0 +1,12 @@
+# Picture-making tools, test pictures and old versions (not needed by the app)
+tools/
+
+# The old Deadly Animals photos
+Images/
+
+# Mac and editor files
+.DS_Store
+.claude/
+
+# Working list used by the picture tools
+IMAGE-CHECKLIST.csv
