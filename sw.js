@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deadly-dinos-cache-v4'; // Bump this when you change the app so tablets pick up the new version
+const CACHE_NAME = 'deadly-dinos-cache-v5'; // Bump this when you change the app so tablets pick up the new version
 
 // The dinosaur list, so every picture can be saved for offline use when the app is installed.
 importScripts('dinosaurs.js');

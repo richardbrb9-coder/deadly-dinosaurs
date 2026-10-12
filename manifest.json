@@ -2,7 +2,7 @@
   "name": "Deadly Dinosaurs",
   "short_name": "Deadly Dinos",
   "description": "A fun, educational app about dinosaurs and prehistoric animals for kids.",
-  "id": "./",
+  "id": "/deadly-dinosaurs/",
   "start_url": "./index.html",
   "scope": "./",
   "display": "fullscreen",
