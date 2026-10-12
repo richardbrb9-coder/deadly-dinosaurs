@@ -8,10 +8,6 @@
 A fun, educational dinosaur app for kids: a Dino-pedia of 83 prehistoric animals, a timeline of the
 Triassic, Jurassic and Cretaceous periods, and games (Dino Pairs, Egg Rescue Maze, Dino Quiz, Who Am I? and Dino Dash).
 
-## ▶️ [Open the app in your browser](https://richardbrb9-coder.github.io/deadly-dinosaurs/)
-
-**https://richardbrb9-coder.github.io/deadly-dinosaurs/** works on a computer, tablet or phone. Nothing to download.
-
 It's a Progressive Web App (PWA): once installed it works offline.
 
 ## Install on a tablet
