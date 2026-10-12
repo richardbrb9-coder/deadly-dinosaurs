@@ -164,7 +164,22 @@
         @media (min-width: 820px) { .game-layout { flex-direction: row; justify-content: center; align-items: center; } }
         .game-canvas { border: 6px solid var(--bark); border-radius: 18px; box-shadow: var(--shadow); background: #E3C690; display: block; touch-action: none; }
         .maze-canvas { width: min(92vw, 54vh, 560px); height: auto; }
-        .dash-canvas { width: min(92vw, calc(min(56vh, 600px) * 2 / 3)); height: auto; }
+        .dash-layout { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .dash-play { display: flex; flex-direction: column; align-items: center; gap: 12px; order: -1; }   /* on narrow screens the game comes first, instructions underneath */
+        /* The game box fills the height left under the header, leaving room for the button row underneath */
+        .dash-canvas { --dash-h: min(calc(100dvh - var(--topbar-h, 150px) - 130px), 1000px); height: var(--dash-h); width: calc(var(--dash-h) * 2 / 3); max-width: 94vw; max-height: calc(94vw * 1.5); aspect-ratio: 2 / 3; }
+        .dash-pad { display: flex; gap: 12px; align-items: center; justify-content: space-between; width: 100%; max-width: 94vw; min-width: min(340px, 94vw); }
+        .dash-pad .d-btn { width: 96px; height: 84px; }
+        .dash-pad .d-btn.jump { width: 120px; }
+        .dash-pad .big-btn { padding: 12px 22px; white-space: nowrap; }
+        @media (min-width: 900px) and (orientation: landscape) {
+            .dash-layout { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 24px; }
+            .dash-info { justify-self: end; text-align: left; max-width: 320px; padding-top: 8px; }
+            .dash-info h1 { font-size: clamp(28px, 3.4vw, 40px); }
+            .dash-info .subtitle { text-align: left; }
+            .dash-play { grid-column: 2; order: 0; }
+            #screen-dash { padding-top: 4px; }
+        }
         .game-side { display: flex; flex-direction: column; align-items: center; gap: 14px; }
         .hud { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
         .hud span { background: var(--parch); border: 3px solid var(--bark); border-radius: 999px; padding: 2px 12px; font-weight: 800; font-size: 18px; }
@@ -173,7 +188,6 @@
         .d-btn:active, .d-btn.pressed { transform: translateY(5px); box-shadow: 0 1px 0 var(--lava-3); }
         .d-up { grid-column: 2; grid-row: 1; } .d-left { grid-column: 1; grid-row: 2; } .d-right { grid-column: 3; grid-row: 2; } .d-down { grid-column: 2; grid-row: 3; }
         .d-mid { grid-column: 2; grid-row: 2; display: flex; align-items: center; justify-content: center; font-size: 34px; }
-        .dash-pad { display: flex; gap: 12px; align-items: center; }
         .d-btn.jump { width: 110px; background: var(--moss); box-shadow: 0 6px 0 var(--jungle); font-size: 22px; flex-direction: column; line-height: 1; }
         .d-btn.jump:active, .d-btn.jump.pressed { box-shadow: 0 1px 0 var(--jungle); }
         .how-to { background: var(--parch); border: 3px dashed var(--bark); border-radius: 16px; padding: 8px 14px; font-weight: 700; font-size: 16px; max-width: 320px; text-align: left; margin: 0; }
@@ -431,25 +445,27 @@
 
         <!-- DINO DASH -->
         <section id="screen-dash" class="screen">
-            <h1>🚙 Dino Dash</h1>
-            <p class="subtitle">Drive the jeep away from the hungry T-rex!</p>
-            <div class="game-layout">
-                <canvas id="dash-canvas" class="game-canvas dash-canvas" width="400" height="600"></canvas>
-                <div class="game-side">
-                    <div class="dash-pad">
-                        <button class="d-btn" id="dash-left">⬅️</button>
-                        <button class="d-btn jump" id="dash-jump">🦘<span style="font-size:16px">JUMP</span></button>
-                        <button class="d-btn" id="dash-right">➡️</button>
-                    </div>
+            <div class="dash-layout">
+                <div class="dash-info">
+                    <h1>🚙 Dino Dash</h1>
+                    <p class="subtitle">Drive the jeep away from the hungry T-rex!</p>
                     <ul class="how-to">
-                        <li>⬅️ ➡️ Change lanes (or swipe)</li>
-                        <li>🦘 Jump over rocks, logs and lava</li>
-                        <li>🥚 Every 3 eggs pushes the T-rex back</li>
-                        <li>⭐ Stars give you a magic shield</li>
-                        <li>🦕 Watch out for dinosaurs crossing!</li>
-                    </ul>
-                    <button class="big-btn" id="dash-start">▶️ Start Engine</button>
+                            <li>⬅️ ➡️ Change lanes (or swipe)</li>
+                            <li>🦘 Jump over rocks, logs and lava</li>
+                            <li>🥚 Every 3 eggs pushes the T-rex back</li>
+                            <li>⭐ Stars give you a magic shield</li>
+                            <li>🦕 Watch out for dinosaurs crossing!</li>
+                        </ul>
                     <p class="moves" id="dash-best"></p>
+                </div>
+                <div class="dash-play">
+                    <canvas id="dash-canvas" class="game-canvas dash-canvas" width="400" height="600"></canvas>
+                    <div class="dash-pad">
+                        <button class="d-btn" id="dash-left" aria-label="Left">⬅️</button>
+                        <button class="d-btn jump" id="dash-jump">🦘<span style="font-size:16px">JUMP</span></button>
+                        <button class="big-btn" id="dash-start">▶️ Start Engine</button>
+                        <button class="d-btn" id="dash-right" aria-label="Right">➡️</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1152,10 +1168,12 @@
                   verge: Array.from({ length: 16 }, (_, i) => ({ side: i % 2, y: Math.floor(i / 2) * 80 - 40 + Math.random() * 30, e: pick(['🌴', '🌿', '🌳', '🌺', '🌿']) })) };
             document.getElementById('dash-best').innerText = dsBest ? `🏆 Best: ${dsBest} m` : '';
         }
-        function dashEnter() { if (!D || D.over) dashReset(); document.getElementById('dash-start').style.display = D.running ? 'none' : 'inline-block'; dashLoopStart(); }
+        // The start button sits where Jump goes until the game starts
+        function dashButtons(running) { document.getElementById('dash-start').style.display = running ? 'none' : ''; document.getElementById('dash-jump').style.display = running ? '' : 'none'; }
+        function dashEnter() { if (!D || D.over) dashReset(); dashButtons(D.running); dashLoopStart(); }
         function dashStart() {
             getAudio(); dashReset(); D.running = true;
-            document.getElementById('dash-start').style.display = 'none';
+            dashButtons(true);
             playSound('roar'); dashMsg('GO GO GO! 🚙💨');
             dashLoopStart();
         }
@@ -1205,6 +1223,7 @@
         }
         function dashGameOver() {
             D.running = false; D.over = true;
+            dashButtons(false);
             const m = Math.floor(D.dist / 20), newBest = m > dsBest;
             if (newBest) { dsBest = m; storageSet('dinoDashBest', m); }
             setTimeout(() => {
@@ -1511,6 +1530,11 @@
             </svg>`;
             document.body.style.setProperty('--pattern', `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
         })();
+
+        // The header wraps onto two rows on some screens, so measure it for the Dash game box
+        function measureTopbar() { document.documentElement.style.setProperty('--topbar-h', document.querySelector('.topbar').offsetHeight + 'px'); }
+        window.addEventListener('resize', measureTopbar); measureTopbar();
+        if (document.fonts) document.fonts.ready.then(measureTopbar);
     </script>
 </body>
 </html>

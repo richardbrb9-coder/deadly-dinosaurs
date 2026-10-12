@@ -1,4 +1,4 @@
-const CACHE_NAME = 'deadly-dinos-cache-v7'; // Bump this when you change the app so tablets pick up the new version
+const CACHE_NAME = 'deadly-dinos-cache-v8'; // Bump this when you change the app so tablets pick up the new version
 const CACHE_PREFIX = CACHE_NAME.replace(/\d+$/, ''); // Only delete this app's own old caches: every app on richardbrb9-coder.github.io shares the same cache storage
 
 // The dinosaur list, so every picture can be saved for offline use when the app is installed.
